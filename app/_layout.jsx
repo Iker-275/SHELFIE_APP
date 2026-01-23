@@ -1,26 +1,38 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React from 'react'
 import { Slot, Stack } from 'expo-router'
+import { Colors } from '../constants/colors'
+import { StatusBar } from 'expo-status-bar'
 
 const _RootLayout = () => {
+    const colorScheme = useColorScheme();
+    const themeColors = Colors[colorScheme] ?? Colors.light;
+    const titleColor =  themeColors.title ;
+    
     return (
-       
+       <>
+       <StatusBar value="auto" />
             <Stack screenOptions={{
                 headerStyle:{
-                    backgroundColor:"#ddd",
+                    backgroundColor:themeColors.navBackground,
                 },
                 headerTintColor:'#333'
             }} >
-                <Stack.Screen name="index" options={{title: 'Home Page'}} />
-                <Stack.Screen name="about" options={{title: 'About Page'}}/>
-                <Stack.Screen name="contact" options={{title: 'YOLO',headerShown: true,}}/>
+                <Stack.Screen name="index" options={{title: 'Home Page',headerTintColor:titleColor}} />
+                <Stack.Screen name="about" options={{title: 'About Page',headerTintColor:titleColor}}/>
+                <Stack.Screen name="contact" options={{title: 'YOLO',headerTintColor:titleColor,headerShown: true,}}/>
                 <Slot />
             </Stack>
-            
+            </>
         
     )
 }
 
 export default _RootLayout
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+     title:{
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+})

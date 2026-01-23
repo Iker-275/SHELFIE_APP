@@ -7,31 +7,35 @@ import { StatusBar } from 'expo-status-bar'
 const _RootLayout = () => {
     const colorScheme = useColorScheme();
     const themeColors = Colors[colorScheme] ?? Colors.light;
-    const titleColor =  themeColors.title ;
-    
+    const titleColor = themeColors.title;
+
     return (
-       <>
-       <StatusBar value="auto" />
+        <>
+            <StatusBar value="auto" />
             <Stack screenOptions={{
-                headerStyle:{
-                    backgroundColor:themeColors.navBackground,
+                headerStyle: {
+                    backgroundColor: themeColors.navBackground,
                 },
-                headerTintColor:'#333'
+                headerTintColor: '#333'
             }} >
-                <Stack.Screen name="index" options={{title: 'Home Page',headerTintColor:titleColor}} />
-                <Stack.Screen name="about" options={{title: 'About Page',headerTintColor:titleColor}}/>
-                <Stack.Screen name="contact" options={{title: 'YOLO',headerTintColor:titleColor,headerShown: true,}}/>
-                <Slot />
+                <Stack.Screen name="index" options={{ title: 'Home Page', headerTintColor: titleColor }} />
+                <Stack.Screen name="about" options={{ title: 'About Page', headerTintColor: titleColor }} />
+                <Stack.Screen name="contact" options={{ title: 'YOLO', headerTintColor: titleColor, headerShown: true, }} />
+                <Stack.Screen name="(auth)" options={{  headerTintColor: titleColor, headerShown: false, }} />
+
+                {/* <Stack.Screen name="login" options={{ title: 'Login', headerTintColor: titleColor, headerShown: true, }} />
+                <Stack.Screen name="register" options={{ title: 'Register', headerTintColor: titleColor, headerShown: true, }} /> */}
+                
             </Stack>
-            </>
-        
+        </>
+
     )
 }
 
 export default _RootLayout
 
 const styles = StyleSheet.create({
-     title:{
+    title: {
         fontSize: 20,
         fontWeight: 'bold',
     },

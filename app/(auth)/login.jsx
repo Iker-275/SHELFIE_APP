@@ -20,7 +20,7 @@ const login = () => {
       <ThemedText isTitle={true}>Login to Your Account</ThemedText>
         <Spacer height={100} />
 
-       <ThemedButton onPress={handleSubmit} isLogin={true} />
+       <ThemedButton isLogin={true} onPress={handleSubmit}  />
   
        <Spacer height={10} />
         <Link href="/register">

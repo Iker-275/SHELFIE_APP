@@ -4,6 +4,8 @@ import {Colors} from '../constants/colors'
 
 const ThemedButton = (style,...props) => {
     const textBtn = props.isLogin == true ? 'Login' : 'Register';
+
+    
     return (
         <Pressable style={({ pressed }) => [styles.btn, pressed && styles.pressed, style]}  {...props} > 
          <Text style={{color:'white', textAlign:'center'}}>{textBtn}</Text>

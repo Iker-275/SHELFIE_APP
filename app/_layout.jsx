@@ -22,6 +22,7 @@ const _RootLayout = () => {
                 <Stack.Screen name="about" options={{ title: 'About Page', headerTintColor: titleColor }} />
                 <Stack.Screen name="contact" options={{ title: 'YOLO', headerTintColor: titleColor, headerShown: true, }} />
                 <Stack.Screen name="(auth)" options={{  headerTintColor: titleColor, headerShown: false, }} />
+                <Stack.Screen name="(dashboard)" options={{ headerTintColor: titleColor, headerShown: false, }} />
 
                 {/* <Stack.Screen name="login" options={{ title: 'Login', headerTintColor: titleColor, headerShown: true, }} />
                 <Stack.Screen name="register" options={{ title: 'Register', headerTintColor: titleColor, headerShown: true, }} /> */}

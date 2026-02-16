@@ -7,8 +7,13 @@ import ThemedLogo from '../components/ThemedLogo'
 import Spacer from '../components/Spacer'
 import ThemedText from '../components/ThemedText'
 import ThemedCard from '../components/ThemedCard'
+import {client} from '../constants/appwrite'
+import 'react-native-url-polyfill/auto'
 
 const Home = () => {
+    client.ping;
+    console.log("Client pinged");
+    
     return (
         <ThemedView style={styles.container}>
             <ThemedLogo />

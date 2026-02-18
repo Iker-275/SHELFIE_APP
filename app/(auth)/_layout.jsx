@@ -3,13 +3,15 @@ import React from 'react'
 import { Slot, Stack } from 'expo-router'
 import { Colors } from '../../constants/colors'
 import { StatusBar } from 'expo-status-bar'
+import { useUser } from '../../hooks/useState'
 
 
 const _AuthLayout = () => {
   const colorScheme = useColorScheme();
   const themeColors = Colors[colorScheme] ?? Colors.light;
     const titleColor = themeColors.title;
-
+    const {user} = useUser()
+  console.log("Current user in AuthLayout:", user);
     return (
         <>
             <StatusBar value="auto" />

@@ -1,5 +1,6 @@
-import { StyleSheet, } from 'react-native'
+import { StyleSheet, Button} from 'react-native'
 import React,{useState} from 'react'
+import { useUser } from '../../hooks/useState'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemedText'
 import Spacer from '../../components/Spacer'
@@ -14,9 +15,17 @@ import ThemedTextInput from '../../components/ThemedTextInput'
 const login = () => {
    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
- const  handleSubmit = () => {
-    console.log("Login button pressed",email,password);
-  }
+
+    const{user,login} = useUser();
+ const  handleSubmit = async () => {
+   try {
+      await login(email, password);
+      console.log("current user is:" ,user);
+      
+    } catch (error) {
+      
+    }
+ }
   return (
     <ThemedView>
     <Spacer height={"20%"} />
@@ -27,7 +36,9 @@ const login = () => {
 
       <ThemedTextInput style={{width:"80%",marginBottom:10}} placeholder="Password" secureTextEntry={true} onChangeText={setPassword} value={password} />
        
-       <ThemedButton isLogin={true} onPress={handleSubmit}  />
+       <Button title="Login" onPress={handleSubmit} />
+       
+       {/* <ThemedButton isLogin={true} onPress={handleSubmit}  /> */}
   
        <Spacer height={10} />
         <Link href="/register">

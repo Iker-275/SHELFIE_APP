@@ -3,6 +3,7 @@ import React from 'react'
 import { Slot, Stack } from 'expo-router'
 import { Colors } from '../constants/colors'
 import { StatusBar } from 'expo-status-bar'
+import { UserProvider } from '../contexts/UserContext'
 
 const _RootLayout = () => {
     const colorScheme = useColorScheme();
@@ -10,7 +11,7 @@ const _RootLayout = () => {
     const titleColor = themeColors.title;
 
     return (
-        <>
+        <UserProvider>
             <StatusBar value="auto" />
             <Stack screenOptions={{
                 headerStyle: {
@@ -28,7 +29,7 @@ const _RootLayout = () => {
                 <Stack.Screen name="register" options={{ title: 'Register', headerTintColor: titleColor, headerShown: true, }} /> */}
                 
             </Stack>
-        </>
+        </UserProvider>
 
     )
 }

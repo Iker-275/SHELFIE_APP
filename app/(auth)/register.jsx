@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, TouchableWithoutFeedback,Keyboard } from 'react-native'
+import { StyleSheet, TextInput, TouchableWithoutFeedback,Keyboard ,Button} from 'react-native'
 import React ,{useState}from 'react'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemedText'
@@ -6,14 +6,21 @@ import Spacer from '../../components/Spacer'
 import { Link } from 'expo-router'
 import ThemedButton from '../../components/ThemedButton'
 import ThemedTextInput from '../../components/ThemedTextInput'
+import { useUser } from '../../hooks/useState'
+
 
 
 const register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
-  const handleSubmit = () => {
-    console.log("Register button pressed",email,password);
+  const { register } = useUser();
+  const handleSubmit = async () => {
+    try {
+      await register(email, password);
+      
+    } catch (error) {
+      
+    }
   }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -27,7 +34,8 @@ const register = () => {
       <ThemedTextInput style={{width:"80%",marginBottom:10}} placeholder="Password" secureTextEntry={true} onChangeText={setPassword} value={password} />
        
 
-      <ThemedButton onPress={handleSubmit} isLogin={false} />
+<Button title="Register" onPress={handleSubmit} />
+      {/* <ThemedButton onPress={handleSubmit} isLogin={false} /> */}
       <Spacer height={10} />
 
       <Link href="/login">

@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, TouchableWithoutFeedback,Keyboard ,Button} from 'react-native'
+import { StyleSheet, TextInput, TouchableWithoutFeedback,Keyboard ,Button,Text} from 'react-native'
 import React ,{useState}from 'react'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemedText'
@@ -13,13 +13,16 @@ import { useUser } from '../../hooks/useState'
 const register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState(null);
+
   const { register } = useUser();
   const handleSubmit = async () => {
     try {
+      setErrorMsg(null);
       await register(email, password);
       
     } catch (error) {
-      
+      setErrorMsg(error.message);
     }
   }
   return (
@@ -37,6 +40,8 @@ const register = () => {
 <Button title="Register" onPress={handleSubmit} />
       {/* <ThemedButton onPress={handleSubmit} isLogin={false} /> */}
       <Spacer height={10} />
+{errorMsg && <Text style={styles.error}>{errorMsg}</Text> }
+      <Spacer height={10} />
 
       <Link href="/login">
         <ThemedText style={{ textAlign: 'center' }}>Login</ThemedText>
@@ -49,5 +54,9 @@ const register = () => {
 export default register
 
 const styles = StyleSheet.create({
-
+  error: {
+    color:"red",
+    textAlign:"center"  ,
+    
+  }
 })

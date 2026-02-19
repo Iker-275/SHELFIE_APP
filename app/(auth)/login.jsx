@@ -1,4 +1,4 @@
-import { StyleSheet, Button} from 'react-native'
+import { StyleSheet, Button,Text} from 'react-native'
 import React,{useState} from 'react'
 import { useUser } from '../../hooks/useState'
 import ThemedView from '../../components/ThemedView'
@@ -15,16 +15,24 @@ import ThemedTextInput from '../../components/ThemedTextInput'
 const login = () => {
    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMsg,setErrorMsg] = useState(null);
 
     const{user,login} = useUser();
  const  handleSubmit = async () => {
+      setErrorMsg( null);
+
+
    try {
       await login(email, password);
-      console.log("current user is:" ,user);
       
     } catch (error) {
+console.log("error msg",error.message);
+
+      setErrorMsg(error.message);
       
     }
+ console.log("state"+ errorMsg);
+
  }
   return (
     <ThemedView>
@@ -37,7 +45,8 @@ const login = () => {
       <ThemedTextInput style={{width:"80%",marginBottom:10}} placeholder="Password" secureTextEntry={true} onChangeText={setPassword} value={password} />
        
        <Button title="Login" onPress={handleSubmit} />
-       
+       <Spacer height={10} />
+       {errorMsg && <Text style={styles.error}>{errorMsg}</Text> }
        {/* <ThemedButton isLogin={true} onPress={handleSubmit}  /> */}
   
        <Spacer height={10} />
@@ -61,5 +70,9 @@ const styles = StyleSheet.create({
   },
   pressed:{
     opacity:0.8,
+  },
+  error:{
+    color:'red',
+    textAlign:'center',
   }
 })

@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { account } from "../constants/appwrite";
 import { ID } from "react-native-appwrite";
-import { Try } from "expo-router/build/views/Try";
+
 
 const UserContext = createContext();
 
@@ -15,7 +15,7 @@ function UserProvider({ children }) {
              
             setUser(response);
         }catch (error) {
-            console.error("Login error:", error);
+            throw new Error(error.message);
         }
     }
     async function register(email, password) {
@@ -23,12 +23,13 @@ function UserProvider({ children }) {
             await account.create(ID.unique(), email, password);
             await login(email, password);
         } catch (error) {
-            console.error("Registration error:", error);
+            throw new Error( error.message);
         }
     }
 
     async function logout() {
-
+ await account.deleteSession("current");
+ setUser(null);
     }
 
     return (

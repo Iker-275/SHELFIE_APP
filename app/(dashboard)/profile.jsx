@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native'
 import React from 'react'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemedText'
 import Spacer from '../../components/Spacer'
 import { useUser } from '../../hooks/useState'
+import ThemedLoader from '../../components/ThemedLoader'
 
 
 const profile = () => {
@@ -14,6 +15,7 @@ const profile = () => {
             <Spacer />
             <ThemedText >Time to start reading..</ThemedText>
             <Spacer height={30} />
+             
             <Button title='Logout' onPress={logout} />
           
             

@@ -7,10 +7,10 @@ import { useUser } from '../../hooks/useState'
 
 
 const profile = () => {
-    const { logout } = useUser()
+    const { logout,user } = useUser()
     return (
         <ThemedView>
-            <ThemedText isTitle={true} style={styles.heading}>Your email</ThemedText>
+            <ThemedText isTitle={true} style={styles.heading}>{user?.email} </ThemedText>
             <Spacer />
             <ThemedText >Time to start reading..</ThemedText>
             <Spacer height={30} />

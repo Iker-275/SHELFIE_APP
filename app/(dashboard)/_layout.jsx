@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 import { Colors } from '../../constants/colors';
 import { Ionicons } from '@expo/vector-icons';
+import UserOnly from '../../components/auth/UserOnly';
 
 const DashboardLayout= () => {
     const colorScheme = useColorScheme();
@@ -11,6 +12,7 @@ const DashboardLayout= () => {
     console.log(Ionicons);
     
   return (
+    <UserOnly>
     <Tabs  
         screenOptions={{headerShown:false,
         tabBarStyle:{backgroundColor:theme.navBackground,
@@ -33,6 +35,7 @@ const DashboardLayout= () => {
         }}} />
          
     </Tabs>
+    </UserOnly>
   )
 }
 

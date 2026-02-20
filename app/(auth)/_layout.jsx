@@ -4,6 +4,7 @@ import { Slot, Stack } from 'expo-router'
 import { Colors } from '../../constants/colors'
 import { StatusBar } from 'expo-status-bar'
 import { useUser } from '../../hooks/useState'
+import GuestOnly from '../../components/auth/GuestOnly'
 
 
 const _AuthLayout = () => {
@@ -13,7 +14,7 @@ const _AuthLayout = () => {
     const {user} = useUser()
   console.log("Current user in AuthLayout:", user);
     return (
-        <>
+        <GuestOnly>
             <StatusBar value="auto" />
             <Stack screenOptions={{
                 headerStyle: {
@@ -23,7 +24,7 @@ const _AuthLayout = () => {
             }} >
                 
             </Stack>
-        </>
+        </GuestOnly>
 
     )
 }

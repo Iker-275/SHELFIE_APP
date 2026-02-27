@@ -4,6 +4,7 @@ import { Slot, Stack } from 'expo-router'
 import { Colors } from '../constants/colors'
 import { StatusBar } from 'expo-status-bar'
 import { UserProvider } from '../contexts/UserContext'
+import { BooksProvider } from '../contexts/booksContext'
 
 const _RootLayout = () => {
     const colorScheme = useColorScheme();
@@ -12,6 +13,7 @@ const _RootLayout = () => {
 
     return (
         <UserProvider>
+        <BooksProvider>
             <StatusBar value="auto" />
             <Stack screenOptions={{
                 headerStyle: {
@@ -29,6 +31,7 @@ const _RootLayout = () => {
                 <Stack.Screen name="register" options={{ title: 'Register', headerTintColor: titleColor, headerShown: true, }} /> */}
                 
             </Stack>
+            </BooksProvider>
         </UserProvider>
 
     )

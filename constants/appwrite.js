@@ -33,6 +33,6 @@ const database = new Databases(client);
 const account = new Account(client);
 const avatars = new Avatars(client);
 
-export default client;
 module.exports = {client,database,config,account,avatars};
+// export default client;
 

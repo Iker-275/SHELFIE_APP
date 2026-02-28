@@ -12,7 +12,7 @@ const _AuthLayout = () => {
   const themeColors = Colors[colorScheme] ?? Colors.light;
     const titleColor = themeColors.title;
     const {user} = useUser()
-  console.log("Current user in AuthLayout:", user);
+ 
     return (
         <GuestOnly>
             <StatusBar value="auto" />

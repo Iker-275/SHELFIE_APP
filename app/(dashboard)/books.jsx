@@ -6,17 +6,20 @@ import Spacer from '../../components/Spacer'
 import { useBooks } from '../../hooks/useBooks'
 import { Colors } from '../../constants/colors'
 import ThemedCard from '../../components/ThemedCard'
+import { useRouter } from 'expo-router'
 
 
 
 const books = () => {
   const { books } = useBooks();
+
+  const router = useRouter(); 
   return (
      <ThemedView>
       <ThemedText style={styles.heading}>Your Reading List</ThemedText>
       <Spacer  /> 
       <FlatList data={books} keyExtractor={(item) => item.$id} contentContainerStyle={styles.list} renderItem={({ item }) => (
-        <Pressable onPress={() => console.log("Book pressed:", item)}>
+        <Pressable onPress={() => router.push(`/books/${item.$id}`)}>
         <ThemedCard style={styles.card}>
           <ThemedText style={{ fontSize: 16, fontWeight: 'bold', color: Colors.primary }}>{item.title}</ThemedText>  
           <ThemedText style={{ fontStyle: 'italic', marginBottom: 5 }}>{item.author}</ThemedText>
